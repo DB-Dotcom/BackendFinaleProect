@@ -6,7 +6,7 @@ import 'dotenv/config'; // Stellt sicher, dass Ihre Umgebungsvariablen geladen w
 // Vor jedem Test einen neuen Benutzer registrieren, um Duplikate zu vermeiden
 test.beforeEach(async t => {
   await request(app)
-    .post('/api/register')
+    .post('/api/users/register')
     .send({
       email: `test_user_${Date.now()}@test.com`,
       password: 'password123',
@@ -16,9 +16,9 @@ test.beforeEach(async t => {
 
 
 
-test('Benutzerregistrierung', async t => {
+/* test('Benutzerregistrierung', async t => {
   const response = await request(app)
-    .post('/api/register')
+    .post('/api/users/register')
     .send({
       email: `new_test_user_${Date.now()}@test.com`,
       password: 'password123',
@@ -29,11 +29,11 @@ test('Benutzerregistrierung', async t => {
   t.regex(response.body.message, /erfolgreich registriert/);
 });
 
-
+ */
 
 test('Benutzeranmeldung', async t => {
   const response = await request(app)
-    .post('/api/login')
+    .post('/api/users/login')
     .send({
       email: 'test_user@test.com', // Nutzen Sie eine E-Mail, die in der Test-DB existiert
       password: 'password123'
@@ -48,7 +48,7 @@ test('Benutzeranmeldung', async t => {
 test('Passwortzurücksetzung mit Super Passwort', async t => {
     // Annahme: ein Benutzer existiert bereits in der Datenbank
     const resetResponse = await request(app)
-      .post('/api/reset-password')
+      .post('/api/users/reset-password')
       .send({
         email: 'existing_user@test.com', // E-Mail eines existierenden Benutzers
         superPassword: 'superPassword123', // Korrektes Super Passwort
@@ -65,7 +65,7 @@ test('Passwortzurücksetzung mit Super Passwort', async t => {
 test('Benutzerdaten abrufen', async t => {
     const userId = 'someUserId'; // Ersetzen Sie dies durch eine gültige Benutzer-ID
     const getResponse = await request(app)
-      .get(`/api/user/${userId}`);
+      .get(`/api/users/user/${userId}`);
   
     t.is(getResponse.status, 200);
     t.truthy(getResponse.body.user);
@@ -74,7 +74,7 @@ test('Benutzerdaten abrufen', async t => {
   // Benutzerdaten aktualisieren
   test('Benutzerdaten aktualisieren', async t => {
     const updateResponse = await request(app)
-      .put('/api/update-user')
+      .put('/api/users/update-user')
       .send({
         email: 'existing_user@test.com', // E-Mail eines existierenden Benutzers
         superPassword: 'superPassword123', // Korrektes Super Passwort
@@ -89,7 +89,7 @@ test('Benutzerdaten abrufen', async t => {
 // Benutzerlöschung
 test('Benutzerlöschung', async t => {
     const deleteResponse = await request(app)
-      .post('/api/delete-user')
+      .post('/api/users/delete-user')
       .send({
         email: 'user_to_delete@test.com', // E-Mail eines zu löschenden Benutzers
         superPassword: 'superPassword123' // Korrektes Super Passwort

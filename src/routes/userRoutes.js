@@ -30,4 +30,5 @@ router.put('/update-user', updateUserData);
 
 
 export default router;
-// Path: backend/src/config/db.js
+
+// Path: src/controllers/UserController.js
