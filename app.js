@@ -2,7 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import connectDB from './src/config/db.js'
-/* import routes from './src/routes/indexRoute.js' */
+import routes from './src/routes/indexRoute.js'
 
 
 dotenv.config()
@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
 
 
-use('/api', routes)  // Verwenden Sie die routes, wenn der Pfad /api ist
+app.use('/api', routes)  // Verwenden Sie die routes, wenn der Pfad /api ist
 
 const PORT = process.env.PORT || 5000
 
