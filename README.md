@@ -61,7 +61,7 @@ Ermöglicht das Zurücksetzen des Benutzerpassworts unter Verwendung des Super P
 
 ## Benutzerlöschung
 
-**POST** `/users/delete-user`
+**DELETE** `/users/delete-user`
 
 Löscht einen Benutzer aus dem System.
 
