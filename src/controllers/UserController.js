@@ -15,6 +15,8 @@ export const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 12);
     const hashedSuperPassword = await bcrypt.hash(superPassword, 12);
 
+    console.log(hashedPassword);
+
     const user = await User.create({
       email,
       password: hashedPassword,
@@ -33,11 +35,18 @@ export const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
 
+    console.log(user);
+    console.log(password);
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    console.log(isMatch); 
+
+
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: 'Anmeldung fehlgeschlagen.' });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '90h' });
 
     res.json({ message: 'Anmeldung erfolgreich.', userId: user._id, token });
   } catch (error) {
