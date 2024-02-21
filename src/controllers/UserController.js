@@ -15,7 +15,6 @@ export const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 12);
     const hashedSuperPassword = await bcrypt.hash(superPassword, 12);
 
-    console.log(hashedPassword);
 
     const user = await User.create({
       email,
@@ -34,12 +33,6 @@ export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-
-    console.log(user);
-    console.log(password);
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    console.log(isMatch); 
 
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
