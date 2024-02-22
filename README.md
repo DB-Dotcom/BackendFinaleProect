@@ -12,98 +12,38 @@ Erstellen Sie eine `.env`-Datei im Wurzelverzeichnis und definieren Sie die Umge
 
 # Auto-Management-System API Endpunkte
 
-## Benutzerregistrierung
+## API-Endpunkte
 
-**POST** `/users/register`
+### Authentifizierung
 
-Registriert einen neuen Benutzer im System.
+| Endpunkt         | Methode | Beschreibung                | Anfragekörper                                                                 | Erfolgantwort                 | Fehlerantwort               |
+|------------------|---------|-----------------------------|-------------------------------------------------------------------------------|-------------------------------|-----------------------------|
+| `/api/users/register` | POST    | Registriert einen neuen Benutzer. | `{ "email": "<email>", "password": "<password>", "superPassword": "<superPassword>" }` | `201` Benutzer erstellt.      | `400` Benutzer existiert bereits. |
+| `/api/users/login`    | POST    | Meldet einen Benutzer an.    | `{ "email": "<email>", "password": "<password>" }`                            | `200` Anmeldung erfolgreich. | `401` Anmeldung fehlgeschlagen.   |
 
-- **Body**:
-  - `email` (String) - Die E-Mail-Adresse des Benutzers.
-  - `password` (String) - Das Passwort des Benutzers.
-  - `superPassword` (String) - Das Super Passwort für Passwortwiederherstellungszwecke.
+### Benutzer
 
-- **Antwort**:
-  - **201** - Benutzer erfolgreich registriert.
-  - **400** - Benutzer existiert bereits.
-  - **500** - Bei der Registrierung ist ein Fehler aufgetreten.
+| Endpunkt                | Methode | Beschreibung                      | Authentifizierung | Anfragekörper                                 | Erfolgantwort            | Fehlerantwort          |
+|-------------------------|---------|-----------------------------------|-------------------|-----------------------------------------------|--------------------------|------------------------|
+| `/api/users/:userId`    | GET     | Ruft Benutzerdaten ab.            | Erforderlich      | N/A                                           | `200` Benutzerdaten.     | `404` Benutzer nicht gefunden. |
+| `/api/users/:userId`    | PUT     | Aktualisiert Benutzerdaten.       | Erforderlich      | `{ "email": "(optional)", "password": "(optional)", "superPassword": "<superPassword>" }` | `200` Aktualisiert.      | `403` Nicht autorisiert. |
+| `/api/users/:userId`    | DELETE  | Löscht ein Benutzerkonto.         | Erforderlich      | `{ "superPassword": "<superPassword>" }`      | `200` Konto gelöscht.    | `403` Nicht autorisiert. |
 
-## Benutzeranmeldung
+### Fahrzeuge
 
-**POST** `/users/login`
+| Endpunkt                        | Methode | Beschreibung                          | Authentifizierung | Anfragekörper                                                      | Erfolgantwort               | Fehlerantwort             |
+|---------------------------------|---------|---------------------------------------|-------------------|--------------------------------------------------------------------|-----------------------------|---------------------------|
+| `/api/cars`                     | POST    | Fügt ein Fahrzeug hinzu.              | Erforderlich      | `{ "make": "<make>", "model": "<model>", "year": <year>, "vin": "<vin>" }` | `201` Fahrzeug hinzugefügt. | `400` Ungültige Anfrage. |
+| `/api/cars/:carId/service`      | POST    | Fügt ein Serviceintervall zu einem Fahrzeug hinzu. | Erforderlich      | `{ "date": "<date>", "servicesPerformed": ["<service>", ...] }`    | `201` Service hinzugefügt.  | `404` Fahrzeug nicht gefunden. |
 
-Meldet einen Benutzer an und gibt ein Token zurück.
+## Fehlermeldungen und Statuscodes
 
-- **Body**:
-  - `email` (String) - Die E-Mail-Adresse des Benutzers.
-  - `password` (String) - Das Passwort des Benutzers.
+Die API verwendet standardisierte HTTP-Statuscodes, um den Erfolg oder Fehlschlag einer Anfrage zu kommunizieren. Zusätzlich zu den Statuscodes gibt die API spezifische Fehlermeldungen zurück, die weitere Details über das Problem liefern.
 
-- **Antwort**:
-  - **200** - Anmeldung erfolgreich.
-  - **401** - Anmeldung fehlgeschlagen.
-  - **500** - Bei der Anmeldung ist ein Fehler aufgetreten.
-
-## Passwortzurücksetzung mit Super Passwort
-
-**POST** `/users/reset-password`
-
-Ermöglicht das Zurücksetzen des Benutzerpassworts unter Verwendung des Super Passworts.
-
-- **Body**:
-  - `email` (String) - Die E-Mail-Adresse des Benutzers.
-  - `superPassword` (String) - Das Super Passwort des Benutzers.
-  - `newPassword` (String) - Das neue Passwort des Benutzers.
-
-- **Antwort**:
-  - **200** - Passwort erfolgreich zurückgesetzt.
-  - **401** - Passwortzurücksetzung fehlgeschlagen.
-  - **500** - Fehler bei der Passwortzurücksetzung.
-
-## Benutzerlöschung
-
-**DELETE** `/users/delete-user`
-
-Löscht einen Benutzer aus dem System.
-
-- **Body**:
-  - `email` (String) - Die E-Mail-Adresse des Benutzers.
-  - `superPassword` (String) - Das Super Passwort des Benutzers zur Authentifizierung.
-
-- **Antwort**:
-  - **200** - Benutzer erfolgreich gelöscht.
-  - **401** - Benutzerlöschung fehlgeschlagen.
-  - **500** - Fehler bei der Benutzerlöschung.
-
-## Benutzerdaten abrufen
-
-**GET** `/user/:userId`
-
-Ruft die Daten eines Benutzers ab.
-
-- **Parameter**:
-  - `userId` (String) - Die ID des Benutzers.
-
-- **Antwort**:
-  - **200** - Benutzerdaten erfolgreich abgerufen.
-  - **404** - Benutzer nicht gefunden.
-  - **500** - Fehler beim Abrufen der Benutzerdaten.
-
-## Benutzerdaten aktualisieren
-
-**PUT** `/users/update-user`
-
-Aktualisiert die Daten eines Benutzers.
-
-- **Body**:
-  - `email` (String) - Die E-Mail-Adresse des Benutzers.
-  - `superPassword` (String) - Das Super Passwort des Benutzers zur Authentifizierung.
-  - `newPassword` (String) - Das neue Passwort des Benutzers.
-
-- **Antwort**:
-  - **200** - Benutzerdaten erfolgreich aktualisiert.
-  - **401** - Benutzerdatenaktualisierung fehlgeschlagen.
-  - **500** - Fehler bei der Benutzerdatenaktualisierung.
-
-## Fehlerbehandlung
-
-Alle Endpunkte geben im Fehlerfall ein JSON-Objekt zurück, das mindestens ein `message` Feld mit einer Beschreibung des Fehlers enthält.
+- `200 OK` - Die Anfrage war erfolgreich.
+- `201 Created` - Ein neues Element wurde erfolgreich erstellt.
+- `400 Bad Request` - Die Anfrage war ungültig.
+- `401 Unauthorized` - Es fehlen oder sind ungültige Authentifizierungsdetails angegeben.
+- `403 Forbidden` - Der Server verweigert die Aktion.
+- `404 Not Found` - Die angeforderte Ressource wurde nicht gefunden.
+- `500 Internal Server Error` - Ein generischer Fehler ist auf dem Server aufgetreten.
