@@ -74,4 +74,3 @@ Ermöglicht es authentifizierten Benutzern, ihr Konto zu löschen.
 
 - Alle sensiblen Anfragen erfordern eine Authentifizierung mittels GWToken.
 - Das `superPassword` wird für kritische Aktionen wie das Aktualisieren von Passwörtern benötigt.
-- Es wird empfohlen, sichere Verbindungen zu verwenden und GWToken sicher zu speichern.
