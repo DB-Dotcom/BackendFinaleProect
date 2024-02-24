@@ -17,7 +17,7 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 
 // Passwort mit Super Passwort zurücksetzen
-router.post('/reset-password', resetPassword);
+/* router.post('/reset-password', resetPassword); */
 
 // Benutzer löschen
 router.delete('/delete-user', deleteUser);

@@ -16,15 +16,6 @@ Erstellen Sie eine `.env`-Datei im Wurzelverzeichnis und definieren Sie die Umge
 
 Der Auth-Controller ist verantwortlich für die Authentifizierung von Benutzern und die Generierung von GWToken, die für die Sicherheit und den Zugriffskontrolle innerhalb der API verwendet werden.
 
-### Login
-
-- **Endpunkt**: `POST /api/auth/login`
-- **Zweck**: Authentifiziert den Benutzer und generiert ein GWToken.
-- **Anfrage**:
-  - **Body**: `{ "email": "user@example.com", "password": "userPassword" }`
-- **Antwort**:
-  - **Erfolg**: `200 OK` mit GWToken im Body: `{ "token": "<GWToken>" }`
-  - **Fehler**: `401 Unauthorized` bei falschen Anmeldedaten.
 
 ### Registrierung
 
@@ -35,6 +26,30 @@ Der Auth-Controller ist verantwortlich für die Authentifizierung von Benutzern 
 - **Antwort**:
   - **Erfolg**: `201 Created` mit GWToken im Body: `{ "token": "<GWToken>", "message": "Benutzer erfolgreich registriert." }`
   - **Fehler**: `400 Bad Request` bei bereits existierendem Benutzer.
+
+
+### Login
+
+- **Endpunkt**: `POST /api/auth/login`
+- **Zweck**: Authentifiziert den Benutzer und generiert ein GWToken.
+- **Anfrage**:
+  - **Body**: `{ "email": "user@example.com", "password": "userPassword" }`
+- **Antwort**:
+  - **Erfolg**: `200 OK` mit GWToken im Body: `{ "token": "<GWToken>" }`
+  - **Fehler**: `401 Unauthorized` bei falschen Anmeldedaten.
+
+## Benutzer löschen
+
+Ermöglicht es authentifizierten Benutzern, ihr Konto zu löschen.
+
+- **Endpunkt**: `DELETE /api/users/:userId`
+- **Authentifizierung**: Erforderlich (GWToken im `Authorization`-Header).
+- **Anfrage**:
+  - **Body**: `{ "superPassword": "userSuperPassword" }`
+- **Antwort**:
+  - **Erfolg**: `200 OK` mit der Nachricht: `{ "message": "Benutzerkonto erfolgreich gelöscht." }`
+  - **Fehler**: `403 Forbidden` bei falschem `superPassword`.
+
 
 ## Benutzerdaten anzeigen
 
@@ -58,17 +73,6 @@ Ermöglicht es authentifizierten Benutzern, ihre persönlichen Daten zu aktualis
   - **Erfolg**: `200 OK` mit der Nachricht: `{ "message": "Benutzerdaten erfolgreich aktualisiert." }`
   - **Fehler**: `403 Forbidden` bei falschem `superPassword`.
 
-## Benutzer löschen
-
-Ermöglicht es authentifizierten Benutzern, ihr Konto zu löschen.
-
-- **Endpunkt**: `DELETE /api/users/:userId`
-- **Authentifizierung**: Erforderlich (GWToken im `Authorization`-Header).
-- **Anfrage**:
-  - **Body**: `{ "superPassword": "userSuperPassword" }`
-- **Antwort**:
-  - **Erfolg**: `200 OK` mit der Nachricht: `{ "message": "Benutzerkonto erfolgreich gelöscht." }`
-  - **Fehler**: `403 Forbidden` bei falschem `superPassword`.
 
 ## Sicherheitsmaßnahmen
 
