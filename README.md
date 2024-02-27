@@ -30,8 +30,7 @@ Der Auth-Controller ist verantwortlich für die Authentifizierung von Benutzern 
 #### Passwort zurücksetzen
 
 - `POST /api/users/reset-password`
-- Erfordert Authentifizierung (Bearer Token)
-- Body: `{ "newPassword": "neuesPasswort123", "superPassword": "superPasswort123" }`
+-  Body: `{ "newPassword": "neuesPasswort123", "superPassword": "superPasswort123" }`
 - Antwort: `{ "message": "Passwort erfolgreich zurückgesetzt." }`
 
 
