@@ -10,7 +10,7 @@ test.serial('Benutzerregistrierung', async t => {
   const response = await request(app)
     .post('/api/users/register')
     .send({
-      email: 'test@example.com',
+      email: 'testAVA@example.com',
       password: 'testPassword',
       superPassword: 'testSuperPassword'
     });
@@ -24,50 +24,32 @@ test.serial('Benutzerlogin', async t => {
   const response = await request(app)
     .post('/api/users/login')
     .send({
-      email: 'test@example.com',
+      email: 'testAVA@example.com',
       password: 'testPassword'
     });
 
   t.is(response.status, 200); // Erwartet, dass der Statuscode 200 ist
   t.truthy(response.body.token); // Stellt sicher, dass ein Token zurückgegeben wurde
-
   token = response.body.token; // Speichert das Token für nachfolgende Anfragen
+  t.truthy(response.body.userId); // Stellt sicher, dass eine Benutzer-ID zurückgegeben wurde
+
   userId = response.body.userId; // Speichert die Benutzer-ID für nachfolgende Anfragen
 });
 
-/* // Benutzerdaten anzeigen
-test.serial('Benutzerdaten anzeigen', async t => {
-  const response = await request(app)
-    .get(`/api/users/${userId}`)
-    .set('Authorization', `Bearer ${token}`);
 
-  t.is(response.status, 200); // Erwartet, dass der Statuscode 200 ist
-  t.is(response.body.email, 'test@example.com');
-});
 
-// Benutzerdaten aktualisieren
-test.serial('Benutzerdaten aktualisieren', async t => {
-  const response = await request(app)
-    .put(`/api/users/${userId}`)
-    .set('Authorization', `Bearer ${token}`)
-    .send({
-      email: 'updated@example.com',
-      password: 'newPassword',
-      superPassword: 'testSuperPassword'
-    });
-
-  t.is(response.status, 200); // Erwartet, dass der Statuscode 200 ist
-  t.regex(response.body.message, /erfolgreich aktualisiert/);
-});
 
 // Benutzer löschen
 test.serial('Benutzer löschen', async t => {
   const response = await request(app)
-    .delete(`/api/users/${userId}`)
+    .delete('/api/users/delete-user')
     .set('Authorization', `Bearer ${token}`)
-    .send({ superPassword: 'testSuperPassword' });
+    .send({
+      email: 'testAVA@example.com',
+      superPassword: 'testSuperPassword'
+    });
 
   t.is(response.status, 200); // Erwartet, dass der Statuscode 200 ist
   t.regex(response.body.message, /erfolgreich gelöscht/);
 });
- */
+ 

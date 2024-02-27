@@ -1,4 +1,4 @@
-import express from 'express';
+/* import express from 'express';
 import { addCar,
          addKilometerstand,
          addTuevEintrag, 
@@ -33,3 +33,4 @@ router.get('/user/:userId', getAllCarsForUser);
 
 export default router;
 
+ */

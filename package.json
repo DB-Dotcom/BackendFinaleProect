@@ -25,7 +25,7 @@
   "contributors": [],
   "scripts": {
     "dev": "nodemon app.js",
-    "test": "ava"
+    "test": "jest"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -39,16 +39,16 @@
     "nodemon": "^3.0.3"
   },
   "devDependencies": {
-    "ava": "^6.1.1",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "babel-jest": "^26.6.3",
     "dotenv": "^16.4.5",
+    "jest": "^29.7.0",
     "supertest": "^6.3.4"
   },
-  "ava": {
-    "require": [
-      "dotenv/config"
-    ],
-    "files": [
-      "test/**/*.js"
-    ]
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true 
   }
+
 }
