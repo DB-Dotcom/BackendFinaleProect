@@ -19,7 +19,7 @@ Der Auth-Controller ist verantwortlich für die Authentifizierung von Benutzern 
 
 ### Registrierung
 
-- **Endpunkt**: `POST /api/auth/register`
+- **Endpunkt**: `POST /api/users/register`
 - **Zweck**: Erstellt ein neues Benutzerkonto und generiert ein GWToken.
 - **Anfrage**:
   - **Body**: `{ "email": "newUser@example.com", "password": "newUserPassword", "superPassword": "userSuperPassword" }`
@@ -33,7 +33,7 @@ Der Endpunkt zum Zurücksetzen des Passworts ermöglicht es Benutzern, ihr Passw
 
 ### Anfrage
 
-**POST** `/api/reset-password`
+**POST** `/api/users/reset-password`
 
 Um das Passwort zurückzusetzen, muss eine Anfrage an diesen Endpunkt gesendet werden, die die folgenden Informationen im Body enthält:
 
@@ -44,7 +44,7 @@ Um das Passwort zurückzusetzen, muss eine Anfrage an diesen Endpunkt gesendet w
 
 ### Login
 
-- **Endpunkt**: `POST /api/auth/login`
+- **Endpunkt**: `POST /api/users/login`
 - **Zweck**: Authentifiziert den Benutzer und generiert ein GWToken.
 - **Anfrage**:
   - **Body**: `{ "email": "user@example.com", "password": "userPassword" }`
