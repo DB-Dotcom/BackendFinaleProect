@@ -7,6 +7,7 @@ import {
   getUserData,
   updateUserData
 } from '../controllers/userController.js';
+import authUser from '../middleware/authUser.js';
 
 const router = express.Router();
 
@@ -17,16 +18,16 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 
 // Passwort mit Super Passwort zurücksetzen
-/* router.post('/reset-password', resetPassword); */
+router.post('/reset-password', resetPassword); 
 
 // Benutzer löschen
-router.delete('/delete-user', deleteUser);
+router.delete('/delete-user', authUser,deleteUser); //
 
 // Benutzerdaten abrufen
-router.get('/:userId', getUserData);
+router.get('/:userId',authUser, getUserData); 
 
 // Benutzerdaten aktualisieren
-router.put('/update-user', updateUserData);
+router.put('/update-user',authUser, updateUserData);
 
 
 export default router;

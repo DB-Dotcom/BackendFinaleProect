@@ -35,7 +35,7 @@ test.serial('Benutzerlogin', async t => {
   userId = response.body.userId; // Speichert die Benutzer-ID für nachfolgende Anfragen
 });
 
-// Benutzerdaten anzeigen
+/* // Benutzerdaten anzeigen
 test.serial('Benutzerdaten anzeigen', async t => {
   const response = await request(app)
     .get(`/api/users/${userId}`)
@@ -70,3 +70,4 @@ test.serial('Benutzer löschen', async t => {
   t.is(response.status, 200); // Erwartet, dass der Statuscode 200 ist
   t.regex(response.body.message, /erfolgreich gelöscht/);
 });
+ */

@@ -27,6 +27,14 @@ Der Auth-Controller ist verantwortlich für die Authentifizierung von Benutzern 
   - **Erfolg**: `201 Created` mit GWToken im Body: `{ "token": "<GWToken>", "message": "Benutzer erfolgreich registriert." }`
   - **Fehler**: `400 Bad Request` bei bereits existierendem Benutzer.
 
+#### Passwort zurücksetzen
+
+- `POST /api/users/reset-password`
+- Erfordert Authentifizierung (Bearer Token)
+- Body: `{ "newPassword": "neuesPasswort123", "superPassword": "superPasswort123" }`
+- Antwort: `{ "message": "Passwort erfolgreich zurückgesetzt." }`
+
+
 
 ### Login
 

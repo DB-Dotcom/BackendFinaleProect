@@ -48,7 +48,7 @@ export const loginUser = async (req, res) => {
 };
 
 // Passwortzurücksetzung mit Super Passwort
-/* export const resetPassword = async (req, res) => {
+export const resetPassword = async (req, res) => {
   try {
     const { email, superPassword, newPassword } = req.body;
     const user = await User.findOne({ email });
@@ -65,7 +65,7 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ message: 'Fehler bei der Passwortzurücksetzung.' });
   }
 };
- */
+
 // Benutzerlöschung
 export const deleteUser = async (req, res) => {
   try {
