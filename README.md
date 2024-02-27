@@ -27,12 +27,19 @@ Der Auth-Controller ist verantwortlich für die Authentifizierung von Benutzern 
   - **Erfolg**: `201 Created` mit GWToken im Body: `{ "token": "<GWToken>", "message": "Benutzer erfolgreich registriert." }`
   - **Fehler**: `400 Bad Request` bei bereits existierendem Benutzer.
 
-#### Passwort zurücksetzen
+## Passwort zurücksetzen
 
-- `POST /api/users/reset-password`
--  Body: `{ "newPassword": "neuesPasswort123", "superPassword": "superPasswort123" }`
-- Antwort: `{ "message": "Passwort erfolgreich zurückgesetzt." }`
+Der Endpunkt zum Zurücksetzen des Passworts ermöglicht es Benutzern, ihr Passwort sicher zu ändern. Dafür ist die Angabe des `superPassword` erforderlich, um die Identität des Benutzers zu verifizieren und unbefugten Zugriff zu verhindern.
 
+### Anfrage
+
+**POST** `/api/reset-password`
+
+Um das Passwort zurückzusetzen, muss eine Anfrage an diesen Endpunkt gesendet werden, die die folgenden Informationen im Body enthält:
+
+- `email`: Die E-Mail-Adresse des Benutzerkontos.
+- `superPassword`: Das SuperPasswort des Benutzerkontos zur Überprüfung der Identität.
+- `newPassword`: Das neue Passwort, das für das Konto festgelegt werden soll.
 
 
 ### Login
