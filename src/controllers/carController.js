@@ -23,7 +23,7 @@ export const createCar = async (req, res) => {
         res.status(201).json({ message: 'Fahrzeug erfolgreich registriert.', carId: newCar._id });
     }
     catch (error) {
-        res.status(500).json({ message: 'Bei der Registrierung ist ein Fehler aufgetreten.' });
+        res.status(500).json({ message: 'Bei der Registrierung ist ein Fehler aufgetreten.'+error.message });
     }
 }
 export const addKilometerstand = async (req, res) => {
@@ -37,7 +37,7 @@ export const addKilometerstand = async (req, res) => {
         await car.save();
         res.status(201).json({ message: 'Kilometerstand erfolgreich hinzugefügt.' });
     } catch (error) {
-        res.status(500).json({ message: 'Bei der Hinzufügung des Kilometerstands ist ein Fehler aufgetreten.' });
+        res.status(500).json({ message: 'Bei der Hinzufügung des Kilometerstands ist ein Fehler aufgetreten.'+error.message  });
     }
 };
 
@@ -52,7 +52,7 @@ export const addTuevEintrag = async (req, res) => {
         await car.save();
         res.status(201).json({ message: 'TÜV-Eintrag erfolgreich hinzugefügt.' });
     } catch (error) {
-        res.status(500).json({ message: 'Bei der Hinzufügung des TÜV-Eintrags ist ein Fehler aufgetreten.' });
+        res.status(500).json({ message: 'Bei der Hinzufügung des TÜV-Eintrags ist ein Fehler aufgetreten.'+error.message });
     }
 };
 
@@ -67,7 +67,7 @@ export const addOelwechsel = async (req, res) => {
         await car.save();
         res.status(201).json({ message: 'Ölwechsel-Eintrag erfolgreich hinzugefügt.' });
     } catch (error) {
-        res.status(500).json({ message: 'Bei der Hinzufügung des Ölwechsel-Eintrags ist ein Fehler aufgetreten.' });
+        res.status(500).json({ message: 'Bei der Hinzufügung des Ölwechsel-Eintrags ist ein Fehler aufgetreten.'+error.message });
     }
 };
 
@@ -83,7 +83,7 @@ export const addService = async (req, res) => {
         await car.save();
         res.status(201).json({ message: 'Service-Eintrag erfolgreich hinzugefügt.' });
     } catch (error) {
-        res.status(500).json({ message: 'Bei der Hinzufügung des Service-Eintrags ist ein Fehler aufgetreten.' });
+        res.status(500).json({ message: 'Bei der Hinzufügung des Service-Eintrags ist ein Fehler aufgetreten.' +error.message });
     }
 };
 
@@ -95,7 +95,7 @@ export const getCarDetails = async (req, res) => {
         }
         res.json({ car });
     } catch (error) {
-        res.status(500).json({ message: 'Fehler beim Abrufen der Fahrzeugdetails.' });
+        res.status(500).json({ message: 'Fehler beim Abrufen der Fahrzeugdetails.' +error.message});
     }
 };
 
@@ -105,11 +105,11 @@ export const getAllCarsForUser = async (req, res) => {
         const cars = await car.find({ userId: req.params.userId });
         res.json({ cars });
     } catch (error) {
-        res.status(500).json({ message: 'Fehler beim Abrufen der Fahrzeuge.' });
+        res.status(500).json({ message: 'Fehler beim Abrufen der Fahrzeuge.' +error.message});
     }
 };
 
-export default router;
+// Path: src/models/Car.js
 
 
 

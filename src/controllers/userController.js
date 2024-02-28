@@ -24,7 +24,7 @@ export const registerUser = async (req, res) => {
 
     res.status(201).json({ message: 'Benutzer erfolgreich registriert.', userId: user._id });
   } catch (error) {
-    res.status(500).json({ message: 'Bei der Registrierung ist ein Fehler aufgetreten.' });
+    res.status(500).json({ message: 'Bei der Registrierung ist ein Fehler aufgetreten.'+ error.message });
   }
 };
 
@@ -39,11 +39,11 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Anmeldung fehlgeschlagen.' });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '90h' });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 
     res.json({ message: 'Anmeldung erfolgreich.', userId: user._id, token });
   } catch (error) {
-    res.status(500).json({ message: 'Bei der Anmeldung ist ein Fehler aufgetreten.' });
+    res.status(500).json({ message: 'Bei der Anmeldung ist ein Fehler aufgetreten.'+error.message });
   }
 };
 
@@ -62,7 +62,7 @@ export const resetPassword = async (req, res) => {
 
     res.json({ message: 'Passwort erfolgreich zurückgesetzt.' });
   } catch (error) {
-    res.status(500).json({ message: 'Fehler bei der Passwortzurücksetzung.' });
+    res.status(500).json({ message: 'Fehler bei der Passwortzurücksetzung.'+error.message });
   }
 };
 
@@ -80,7 +80,7 @@ export const deleteUser = async (req, res) => {
 
     res.json({ message: 'Benutzer erfolgreich gelöscht.' });
   } catch (error) {
-    res.status(500).json({ message: 'Fehler bei der Benutzerlöschung.' });
+    res.status(500).json({ message: 'Fehler bei der Benutzerlöschung.' +error.message});
   }
 };
 
@@ -95,7 +95,7 @@ export const getUserData = async (req, res) => {
 
     res.json({ user });
   } catch (error) {
-    res.status(500).json({ message: 'Fehler beim Abrufen der Benutzerdaten.' });
+    res.status(500).json({ message: 'Fehler beim Abrufen der Benutzerdaten.'+error.message });
   }
 };
 
@@ -114,6 +114,6 @@ export const updateUserData = async (req, res) => {
 
     res.json({ message: 'Benutzerdaten erfolgreich aktualisiert.' });
   } catch (error) {
-    res.status(500).json({ message: 'Fehler bei der Benutzerdatenaktualisierung.' });
+    res.status(500).json({ message: 'Fehler bei der Benutzerdatenaktualisierung.' + error.message});
   }
 };
