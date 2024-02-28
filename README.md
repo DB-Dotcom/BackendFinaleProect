@@ -1,6 +1,6 @@
 # Backend-Dokumentation
 
-Diese Dokumentation beschreibt die Nutzung der REST API, die im Rahmen des Backends entwickelt wurde. Das Backend basiert auf dem MERN-Stack (MongoDB, Express.js, React.js, Node.js) und Vue.js für die Frontend-Entwicklung. Es bietet eine Reihe von Endpunkten zur Verwaltung von Benutzer- und Fahrzeugdaten.
+Diese Dokumentation beschreibt die Nutzung der REST API, die im Rahmen des Backends entwickelt wurde. Das Backend basiert auf dem MERN-Stack (MongoDB, Express.js, React.js, Node.js) für die Frontend-Entwicklung. Es bietet eine Reihe von Endpunkten zur Verwaltung von Benutzer- und Fahrzeugdaten.
 
 ## Voraussetzungen 📋
 
