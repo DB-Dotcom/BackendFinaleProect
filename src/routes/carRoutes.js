@@ -1,4 +1,4 @@
-/* import express from 'express';
+import express from 'express';
 import { addCar,
          addKilometerstand,
          addTuevEintrag, 
@@ -14,7 +14,7 @@ const router = express.Router();
 router.post('/', addCar);
 
 // Route zum Hinzufügen eines Kilometerstand-Eintrags
-router.post('/:carId/kilometerstand', addKilometerstand);
+/* router.post('/:carId/kilometerstand', addKilometerstand);
 
 // Route zum Hinzufügen eines TÜV-Eintrags
 router.post('/:carId/tuev', addTuevEintrag);
@@ -30,7 +30,6 @@ router.get('/:carId', getCarDetails);
 
 // Route zum Abrufen aller Fahrzeuge, die einem Benutzer gehören
 router.get('/user/:userId', getAllCarsForUser);
-
+ */
 export default router;
 
- */

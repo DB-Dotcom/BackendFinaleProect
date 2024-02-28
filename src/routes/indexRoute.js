@@ -6,7 +6,7 @@ import userRoutes from './userRoutes.js';
 const router = express.Router();
 
 router.use('/users', userRoutes);
-/* router.use('/cars', carRoutes); */
+router.use('/cars', carRoutes);
 
 export default router;
 

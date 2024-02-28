@@ -5,10 +5,14 @@ const carSchema = new mongoose.Schema({
   kennzeichen: String,
   marke: String,
   modell: String,
+  baujahr: Number,
   kraftstoff: String,
   schadstoffklasse: String,
   leistungKW: Number,
   leistungPS: Number,
+  kilometerstand: Number,
+  nächsteTüvUntersuchung: Date,
+  // history fields
   kilometerstandHistory: [{
     datum: Date,
     kilometerstand: Number,
