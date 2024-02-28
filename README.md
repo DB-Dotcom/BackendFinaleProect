@@ -59,16 +59,71 @@ Die API bietet Endpunkte zur Verwaltung von Benutzer- und Fahrzeugdaten. Für ei
 
 ```json
 {
-  "userId": "12345",
-  "carName": "Mein Auto",
-  "carBrand": "Toyota",
-  "carModel": "Corolla",
-  "carType": "Limousine",
-  "carYear": 2020,
-  "carKilometerstand": 50000
+  "userId": "5f8d0d55b54764421b7156d5",
+  "kennzeichen": "B-XY123",
+  "marke": "Volkswagen",
+  "modell": "Golf",
+  "baujahr": 2017,
+  "kraftstoff": "Diesel",
+  "schadstoffklasse": "Euro 6",
+  "leistungKW": 110,
+  "leistungPS": 150,
+  "kilometerstand": 85000,
+  "nächsteTüvUntersuchung": "2023-10-30",
+  "kilometerstandHistory": [
+    {
+      "datum": "2021-05-20",
+      "kilometerstand": 75000
+    },
+    {
+      "datum": "2022-05-20",
+      "kilometerstand": 80000
+    }
+  ],
+  "tuevHistory": [
+    {
+      "datum": "2021-06-15",
+      "bemerkung": "ohne Mängel bestanden"
+    }
+  ],
+  "oelwechselHistory": [
+    {
+      "datum": "2022-01-10",
+      "kilometerstand": 78000,
+      "naechsterOelwechselKm": 93000
+    }
+  ],
+  "serviceHistory": [
+    {
+      "datum": "2022-04-22",
+      "beschreibung": "Jahresservice inklusive Bremsenprüfung"
+    }
+  ]
 }
 
+
 ```
+### Array sind leer, wenn keine Einträge vorhanden sind
+```json
+{
+  "userId": "5f8d0d55b54764421b7156d5",
+  "kennzeichen": "B-XY123",
+  "marke": "Volkswagen",
+  "modell": "Golf",
+  "baujahr": 2017,
+  "kraftstoff": "Diesel",
+  "schadstoffklasse": "Euro 6",
+  "leistungKW": 110,
+  "leistungPS": 150,
+  "kilometerstand": 85000,
+  "nächsteTüvUntersuchung": "2023-10-30",
+  "kilometerstandHistory": [],
+  "tuevHistory": [],
+  "oelwechselHistory": [],
+  "serviceHistory": []
+}
+```
+
 
 #### 📝 Kilometerstand hinzufügen 
 
