@@ -1,6 +1,6 @@
 # Backend-Dokumentation
 
-Diese Dokumentation beschreibt die Nutzung der REST API, die im Rahmen des Backends entwickelt wurde. Das Backend basiert auf dem MERN-Stack (MongoDB, Express.js, React.js, Node.js) und Vue.js für die Frontend-Entwicklung. Es bietet eine Reihe von Endpunkten zur Verwaltung von Benutzer- und Fahrzeugdaten.
+Diese Dokumentation beschreibt die Nutzung der REST API, die im Rahmen des Backends entwickelt wurde. Das Backend basiert auf dem MERN-Stack (MongoDB, Express.js, React.js, Node.js) für die Frontend-Entwicklung. Es bietet eine Reihe von Endpunkten zur Verwaltung von Benutzer- und Fahrzeugdaten.
 
 ## Voraussetzungen 📋
 
@@ -12,7 +12,7 @@ Diese Dokumentation beschreibt die Nutzung der REST API, die im Rahmen des Backe
 
 1. Klonen Sie das Repository und navigieren Sie in das Projektverzeichnis.
 2. Installieren Sie die Abhängigkeiten mit `npm install`.
-3. Starten Sie den Server mit `npm start`. Der Server läuft standardmäßig auf Port 5000, es sei denn, ein anderer Port ist in der `.env` Datei festgelegt.
+3. Starten Sie den Server mit `npm run dev`. Der Server läuft standardmäßig auf Port 5000, es sei denn, ein anderer Port ist in der `.env` Datei festgelegt.
 
 ## Verwendung der API  📡
 
