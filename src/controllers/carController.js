@@ -1,115 +1,146 @@
-import car from '../models/Car.js ';
-
+import Car from '../models/Car.js'
 
 export const createCar = async (req, res) => {
-    try { const { userId, carName, carBrand, carModel, carType, carYear, carKilometerstand, carTuev, carOelwechsel, carService } = req.body;
-        const existingCar = await car
-            .findOne({ carName });
-        if (existingCar) {
-            return res.status(400).json({ message: 'Fahrzeug existiert bereits.' });
-        }
-        const newCar = await car.create({
-            userId,
-            carName,
-            carBrand,
-            carModel,
-            carType,
-            carYear,
-            carKilometerstand,
-            carTuev,
-            carOelwechsel,
-            carService,
-        });
-        res.status(201).json({ message: 'Fahrzeug erfolgreich registriert.', carId: newCar._id });
-    }
-    catch (error) {
-        res.status(500).json({ message: 'Bei der Registrierung ist ein Fehler aufgetreten.'+error.message });
-    }
+  try {
+    const {
+      userId,
+      kennzeichen,
+      marke,
+      modell,
+      baujahr,
+      kraftstoff,
+      schadstoffklasse,
+      leistungKW,
+      leistungPS,
+      kilometerstand,
+      nächsteTüvUntersuchung
+    } = req.body
+
+    const newCar = new Car({
+      userId,
+      kennzeichen,
+      marke,
+      modell,
+      baujahr,
+      kraftstoff,
+      schadstoffklasse,
+      leistungKW,
+      leistungPS,
+      kilometerstand,
+      nächsteTüvUntersuchung
+    })
+
+    await newCar.save()
+    res
+      .status(201)
+      .json({ message: 'Fahrzeug erfolgreich erstellt.', carId: newCar._id })
+  } catch (error) {
+    console.error('Fehler beim Erstellen des Fahrzeugs:', error)
+    res
+      .status(500)
+      .json({
+        message: 'Fehler beim Erstellen des Fahrzeugs.',
+        error: error.message
+      })
+  }
 }
+
 export const addKilometerstand = async (req, res) => {
-    try {
-        const { carId, kilometerstand } = req.body;
-        const car = await car.findById(carId);
-        if (!car) {
-            return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' });
-        }
-        car.carKilometerstand.push({ kilometerstand });
-        await car.save();
-        res.status(201).json({ message: 'Kilometerstand erfolgreich hinzugefügt.' });
-    } catch (error) {
-        res.status(500).json({ message: 'Bei der Hinzufügung des Kilometerstands ist ein Fehler aufgetreten.'+error.message  });
+  try {
+    const { carId, kilometerstand } = req.body
+    const car = await Car.findById(carId)
+    if (!car) {
+      return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' })
     }
-};
+    car.kilometerstandHistory.push({ datum: new Date(), kilometerstand })
+    await car.save()
+    res.status(201).json({ message: 'Kilometerstand erfolgreich hinzugefügt.' })
+  } catch (error) {
+    console.error('Fehler beim Hinzufügen des Kilometerstands:', error)
+    res
+      .status(500)
+      .json({
+        message: 'Fehler beim Hinzufügen des Kilometerstands.',
+        error: error.message
+      })
+  }
+}
 
 export const addTuevEintrag = async (req, res) => {
-    try {
-        const { carId, tuev } = req.body;
-        const car = await car.findById(carId);
-        if (!car) {
-            return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' });
-        }
-        car.carTuev.push({ tuev });
-        await car.save();
-        res.status(201).json({ message: 'TÜV-Eintrag erfolgreich hinzugefügt.' });
-    } catch (error) {
-        res.status(500).json({ message: 'Bei der Hinzufügung des TÜV-Eintrags ist ein Fehler aufgetreten.'+error.message });
+  try {
+    const { carId, tuev } = req.body
+    const car = await Car.findById(carId)
+    if (!car) {
+      return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' })
     }
-};
+    car.tuevHistory.push(tuev)
+    await car.save()
+    res.status(201).json({ message: 'TÜV-Eintrag erfolgreich hinzugefügt.' })
+  } catch (error) {
+    console.error('Fehler beim Hinzufügen des TÜV-Eintrags:', error)
+    res
+      .status(500)
+      .json({
+        message: 'Fehler beim Hinzufügen des TÜV-Eintrags.',
+        error: error.message
+      })
+  }
+}
 
 export const addOelwechsel = async (req, res) => {
-    try {
-        const { carId, oelwechsel } = req.body;
-        const car = await car.findById(carId);
-        if (!car) {
-            return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' });
-        }
-        car.carOelwechsel.push({ oelwechsel });
-        await car.save();
-        res.status(201).json({ message: 'Ölwechsel-Eintrag erfolgreich hinzugefügt.' });
-    } catch (error) {
-        res.status(500).json({ message: 'Bei der Hinzufügung des Ölwechsel-Eintrags ist ein Fehler aufgetreten.'+error.message });
+  try {
+    const { carId, oelwechsel } = req.body
+    const car = await Car.findById(carId)
+    if (!car) {
+      return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' })
     }
-};
-
-
-export const addService = async (req, res) => {
-    try {
-        const { carId, service } = req.body;
-        const car = await car.findById(carId);
-        if (!car) {
-            return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' });
-        }
-        car.carService.push({ service });
-        await car.save();
-        res.status(201).json({ message: 'Service-Eintrag erfolgreich hinzugefügt.' });
-    } catch (error) {
-        res.status(500).json({ message: 'Bei der Hinzufügung des Service-Eintrags ist ein Fehler aufgetreten.' +error.message });
-    }
-};
+    car.oelwechselHistory.push(oelwechsel)
+    await car.save()
+    res
+      .status(201)
+      .json({ message: 'Ölwechsel-Eintrag erfolgreich hinzugefügt.' })
+  } catch (error) {
+    console.error('Fehler beim Hinzufügen des Ölwechsel-Eintrags:', error)
+    res
+      .status(500)
+      .json({
+        message: 'Fehler beim Hinzufügen des Ölwechsel-Eintrags.',
+        error: error.message
+      })
+  }
+}
 
 export const getCarDetails = async (req, res) => {
-    try {
-        const car = await car.findById(req.params.carId);
-        if (!car) {
-            return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' });
-        }
-        res.json({ car });
-    } catch (error) {
-        res.status(500).json({ message: 'Fehler beim Abrufen der Fahrzeugdetails.' +error.message});
+  try {
+    const car = await Car.findById(req.params.carId)
+    if (!car) {
+      return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' })
     }
-};
-
+    res.json(car)
+  } catch (error) {
+    console.error('Fehler beim Abrufen der Fahrzeugdetails:', error)
+    res
+      .status(500)
+      .json({
+        message: 'Fehler beim Abrufen der Fahrzeugdetails.',
+        error: error.message
+      })
+  }
+}
 
 export const getAllCarsForUser = async (req, res) => {
-    try {
-        const cars = await car.find({ userId: req.params.userId });
-        res.json({ cars });
-    } catch (error) {
-        res.status(500).json({ message: 'Fehler beim Abrufen der Fahrzeuge.' +error.message});
-    }
-};
+  try {
+    const cars = await Car.find({ userId: req.params.userId })
+    res.json({ cars })
+  } catch (error) {
+    console.error('Fehler beim Abrufen der Fahrzeuge für Benutzer:', error)
+    res
+      .status(500)
+      .json({
+        message: 'Fehler beim Abrufen der Fahrzeuge.',
+        error: error.message
+      })
+  }
+}
 
 // Path: src/models/Car.js
-
-
-
