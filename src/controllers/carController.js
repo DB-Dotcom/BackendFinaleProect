@@ -110,6 +110,29 @@ export const addOelwechsel = async (req, res) => {
   }
 }
 
+export const addService = async (req, res) => {
+  try {
+    const { carId, service } = req.body
+    const car = await Car.findById(carId)
+    if (!car) {
+      return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' })
+    }
+    car.serviceHistory.push(service)
+    await car.save()
+    res.status(201).json({ message: 'Service-Eintrag erfolgreich hinzugefügt.' })
+  } catch (error) {
+    console.error('Fehler beim Hinzufügen des Service-Eintrags:', error)
+    res
+      .status(500)
+      .json({
+        message: 'Fehler beim Hinzufügen des Service-Eintrags.',
+        error: error.message
+      })
+  }
+}
+
+
+
 export const getCarDetails = async (req, res) => {
   try {
     const car = await Car.findById(req.params.carId)
