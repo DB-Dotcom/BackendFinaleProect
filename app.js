@@ -10,9 +10,12 @@ import routes from './src/routes/indexRoute.js'
 
 dotenv.config()
 
-connectDB() // Verbindung zur Datenbank herstellen
-
 const app = express()
+const PORT = process.env.PORT || 3000
+
+
+
+
 
 app.use(express.json())
 app.use(cors())
@@ -44,11 +47,13 @@ app.get('/', async (req, res) => {
 
 app.use('/api', routes)  // Verwenden Sie die routes, wenn der Pfad /api ist
 
-const PORT = process.env.PORT || 5000
 
 
-app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+
+connectDB().then(() => {
+  app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+}
+).catch((error) => console.log('Error:', error.message))
 
 export default app // Export für den Test
 
-// Path: backend/src/config/db.js
