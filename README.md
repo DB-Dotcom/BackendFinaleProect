@@ -129,21 +129,60 @@ Die API bietet Endpunkte zur Verwaltung von Benutzer- und Fahrzeugdaten. Für ei
 
 - `POST /api/cars/:carId/kilometerstand`
   - Erfordert Authentifizierung. Erwartet JSON mit `kilometerstand`.
+  
+
+```json
+{
+  "kilometerstand": 87000
+}
+```
+
 
 #### 📝 TÜV-Eintrag hinzufügen 
 
 - `POST /api/cars/:carId/tuev`
   - Erfordert Authentifizierung. Erwartet JSON mit `tuev`.
+  - 
+
+```json
+{
+  "tuev": {
+    "datum": "2025-07-23",
+    "bemerkung": "ohne Mängel bestanden"
+  }
+}
+```
 
 #### 📝 Ölwechsel-Eintrag hinzufügen 
 
 - `POST /api/cars/:carId/oelwechsel`
   - Erfordert Authentifizierung. Erwartet JSON mit `oelwechsel`.
 
+
+```json
+{
+  "oelwechsel": {
+    "datum": "2023-09-20",
+    "kilometerstand": 95000,
+    "naechsterOelwechselKm": 105000
+  }
+}
+```
+
 #### 📝 Service-Eintrag hinzufügen  
 
 - `POST /api/cars/:carId/service`
   - Erfordert Authentifizierung. Erwartet JSON mit `service`.
+
+
+```json
+{
+  "service": {
+    "datum": "2023-10-01",
+    "beschreibung": "Jährliche Inspektion inklusive Ölwechsel"
+  }
+}
+```
 
 #### 📝 Fahrzeugdetails abrufen  
 

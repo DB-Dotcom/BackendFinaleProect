@@ -47,8 +47,8 @@ export const createCar = async (req, res) => {
 
 export const addKilometerstand = async (req, res) => {
   try {
-    const { carId, kilometerstand } = req.body
-    const car = await Car.findById(carId)
+    const { kilometerstand } = req.body
+    const car = await Car.findById(req.params.carId)
     if (!car) {
       return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' })
     }
@@ -68,8 +68,8 @@ export const addKilometerstand = async (req, res) => {
 
 export const addTuevEintrag = async (req, res) => {
   try {
-    const { carId, tuev } = req.body
-    const car = await Car.findById(carId)
+    const { tuev } = req.body
+    const car = await Car.findById(req.params.carId)
     if (!car) {
       return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' })
     }
@@ -89,8 +89,8 @@ export const addTuevEintrag = async (req, res) => {
 
 export const addOelwechsel = async (req, res) => {
   try {
-    const { carId, oelwechsel } = req.body
-    const car = await Car.findById(carId)
+    const { oelwechsel } = req.body
+    const car = await Car.findById(req.params.carId)
     if (!car) {
       return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' })
     }
@@ -112,8 +112,8 @@ export const addOelwechsel = async (req, res) => {
 
 export const addService = async (req, res) => {
   try {
-    const { carId, service } = req.body
-    const car = await Car.findById(carId)
+    const { service } = req.body
+    const car = await Car.findById(req.params.carId)
     if (!car) {
       return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' })
     }
