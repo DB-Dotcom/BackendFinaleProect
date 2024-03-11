@@ -48,6 +48,9 @@ app.get('/', async (req, res) => {
 app.use('/api', routes)  // Verwenden Sie die routes, wenn der Pfad /api ist
 
 
+app.all('*', (req, res) => {
+  res.status(404).send('Seite nicht gefunden')
+})
 
 
 connectDB().then(() => {
