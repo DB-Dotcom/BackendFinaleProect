@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import connectDB from './src/config/db.js'
 import routes from './src/routes/indexRoute.js'
 
-dotenv.config()
+dotenv.config();
 
 const app = express()
 const PORT = process.env.PORT || 3000
