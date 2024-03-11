@@ -25,7 +25,7 @@
   "contributors": [],
   "scripts": {
     "dev": "nodemon app.js",
-    "test": "jest"
+    "test": "ava"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -39,6 +39,7 @@
     "nodemon": "^3.0.3"
   },
   "devDependencies": {
+    "ava": "^6.1.2",
     "dotenv": "^16.4.5",
     "supertest": "^6.3.4"
   }
