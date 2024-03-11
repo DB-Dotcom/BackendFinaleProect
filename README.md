@@ -12,7 +12,7 @@ Diese Dokumentation beschreibt die Nutzung der REST API, die im Rahmen des Backe
 
 1. Klonen Sie das Repository und navigieren Sie in das Projektverzeichnis.
 2. Installieren Sie die Abhängigkeiten mit `npm install`.
-3. Starten Sie den Server mit `npm run dev`. Der Server läuft standardmäßig auf Port 5000, es sei denn, ein anderer Port ist in der `.env` Datei festgelegt.
+3. Starten Sie den Server mit `npm run dev`. Der Server läuft standardmäßig auf Port 3000, es sei denn, ein anderer Port ist in der `.env` Datei festgelegt.
 
 ## Verwendung der API  📡
 

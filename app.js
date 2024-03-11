@@ -13,10 +13,7 @@ dotenv.config();
 const app = express()
 const PORT = process.env.PORT || 3000
 
-
-
-
-
+// Middleware
 app.use(express.json())
 app.use(cors())
 
@@ -48,11 +45,13 @@ app.get('/', async (req, res) => {
 app.use('/api', routes)  // Verwenden Sie die routes, wenn der Pfad /api ist
 
 
-/* app.all('*', (req, res) => {
-  res.status(404).send('Seite nicht gefunden')
-})
- */
+// 404 Fehlerbehandlung
+app.all('*', (req, res) => {
+  console.log(`404 - Die Route ${req.originalUrl} existiert nicht.`);
+  res.status(404).send('Die angeforderte Ressource wurde nicht gefunden.');
+});
 
+// Verbindung zur Datenbank und Starten des Servers
 connectDB().then(() => {
   app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
 }
