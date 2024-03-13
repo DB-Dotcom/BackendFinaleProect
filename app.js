@@ -1,5 +1,5 @@
 import express from 'express'  
-import dotenv from 'dotenv'
+/* import dotenv from 'dotenv' */
 import cors from 'cors'
 import { readFile } from 'fs/promises'; // Verwenden Sie fs promises API für modernen, asynchronen Code
 import { marked } from 'marked'; // Importieren Sie marked für die Markdown-Konvertierung
@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import connectDB from './src/config/db.js'
 import routes from './src/routes/indexRoute.js'
 
-dotenv.config();
+/* dotenv.config(); */
 
 const app = express()
 const PORT = process.env.PORT || 3000
