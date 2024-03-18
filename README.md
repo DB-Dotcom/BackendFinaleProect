@@ -60,6 +60,7 @@ Die API bietet Endpunkte zur Verwaltung von Benutzer- und Fahrzeugdaten. Für ei
 ```json
 {
   "userId": "5f8d0d55b54764421b7156d5",
+  "fahrzeugart": "PKW",
   "kennzeichen": "B-XY123",
   "marke": "Volkswagen",
   "modell": "Golf",
@@ -109,6 +110,7 @@ Die API bietet Endpunkte zur Verwaltung von Benutzer- und Fahrzeugdaten. Für ei
 ```json
 {
   "userId": "5f8d0d55b54764421b7156d5",
+  "fahrzeugart": "PKW",
   "kennzeichen": "B-XY123",
   "marke": "Volkswagen",
   "modell": "Golf",
