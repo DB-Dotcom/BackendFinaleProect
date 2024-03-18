@@ -12,6 +12,9 @@ const carSchema = new mongoose.Schema({
   leistungPS: Number,
   kilometerstand: Number,
   nächsteTüvUntersuchung: Date,
+  nächsteoelwechsel: Date,
+  nächsteoelwechselKm: Number,
+
   // history fields
   kilometerstandHistory: [{
     datum: Date,
