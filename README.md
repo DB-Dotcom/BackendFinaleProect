@@ -70,6 +70,8 @@ Die API bietet Endpunkte zur Verwaltung von Benutzer- und Fahrzeugdaten. Für ei
   "leistungPS": 150,
   "kilometerstand": 85000,
   "nächsteTüvUntersuchung": "2023-10-30",
+  "nächsteoelwechsel": "2023-09-20",
+  "nächsteoelwechselKm": 95000,
   "kilometerstandHistory": [
     {
       "datum": "2021-05-20",
@@ -117,6 +119,8 @@ Die API bietet Endpunkte zur Verwaltung von Benutzer- und Fahrzeugdaten. Für ei
   "leistungPS": 150,
   "kilometerstand": 85000,
   "nächsteTüvUntersuchung": "2023-10-30",
+  "nächsteoelwechsel": "2023-09-20",
+  "nächsteoelwechselKm": 95000,
   "kilometerstandHistory": [],
   "tuevHistory": [],
   "oelwechselHistory": [],
