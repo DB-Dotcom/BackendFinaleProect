@@ -4,6 +4,7 @@ export const createCar = async (req, res) => {
   try {
     const {
       userId,
+      fahrzeugart,
       kennzeichen,
       marke,
       modell,
@@ -18,6 +19,7 @@ export const createCar = async (req, res) => {
 
     const newCar = new Car({
       userId,
+      fahrzeugart,
       kennzeichen,
       marke,
       modell,
