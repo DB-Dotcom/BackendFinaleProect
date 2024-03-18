@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const carSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  fahrzeugart: String,
   kennzeichen: String,
   marke: String,
   modell: String,
