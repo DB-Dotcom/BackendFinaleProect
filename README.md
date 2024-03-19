@@ -54,7 +54,7 @@ Die API bietet Endpunkte zur Verwaltung von Benutzer- und Fahrzeugdaten. Für ei
 
 #### 📝 Fahrzeug registrieren 
 
-- `POST /api/cars/`
+- `POST /api/cars/addCar`
   - Erfordert Authentifizierung. Erwartet JSON mit Fahrzeugdetails.
 
 ```json

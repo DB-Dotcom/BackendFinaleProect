@@ -14,7 +14,9 @@ export const createCar = async (req, res) => {
       leistungKW,
       leistungPS,
       kilometerstand,
-      nächsteTüvUntersuchung
+      nächsteTüvUntersuchung,
+      nächsteoelwechsel,
+      nächsteoelwechselKm
     } = req.body
 
     const newCar = new Car({

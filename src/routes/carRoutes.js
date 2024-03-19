@@ -13,7 +13,7 @@ import { createCar,
 const router = express.Router();
 
 // Route zum Hinzufügen eines neuen Fahrzeugs
-router.post('/', authUser, createCar);
+router.post('/addCar', authUser, createCar);
 
 // Route zum Hinzufügen eines Kilometerstand-Eintrags
 router.post('/:carId/kilometerstand',authUser, addKilometerstand);
