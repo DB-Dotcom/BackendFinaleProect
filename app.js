@@ -11,14 +11,11 @@ import routes from './src/routes/indexRoute.js'
 const app = express()
 const PORT = process.env.PORT || 3000
 
-const corsOptions = {
-  origin:'https://carsdatabase.cyclic.app',
-  optionsSuccessStatus: 200
-}
 
 // Middleware
 app.use(express.json())
-app.use(cors(corsOptions))
+app.use(cors())
+
 
 // Konvertieren __dirname in einem ES Module Kontext
 const __filename = fileURLToPath(import.meta.url);
