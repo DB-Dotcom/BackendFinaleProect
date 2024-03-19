@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000
 
 const corsOptions = {
   origin:'https://carsdatabase.cyclic.app',
-  Credentials: true,
+  optionsSuccessStatus: 200
 }
 
 // Middleware
