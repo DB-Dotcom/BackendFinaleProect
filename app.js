@@ -1,5 +1,4 @@
 import express from 'express'  
-/* import dotenv from 'dotenv' */
 import cors from 'cors'
 import { readFile } from 'fs/promises'; // Verwenden Sie fs promises API für modernen, asynchronen Code
 import { marked } from 'marked'; // Importieren Sie marked für die Markdown-Konvertierung
@@ -8,14 +7,18 @@ import { fileURLToPath } from 'url';
 import connectDB from './src/config/db.js'
 import routes from './src/routes/indexRoute.js'
 
-/* dotenv.config(); */
 
 const app = express()
 const PORT = process.env.PORT || 3000
 
+const corsOptions = {
+  origin:'https://carsdatabase.cyclic.app',
+  Credentials: true,
+}
+
 // Middleware
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions))
 
 // Konvertieren __dirname in einem ES Module Kontext
 const __filename = fileURLToPath(import.meta.url);
