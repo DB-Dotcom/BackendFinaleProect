@@ -11,10 +11,15 @@ import routes from './src/routes/indexRoute.js'
 const app = express()
 const PORT = process.env.PORT || 3000
 
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+}
+
 
 // Middleware
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions))
 
 
 // Konvertieren __dirname in einem ES Module Kontext
