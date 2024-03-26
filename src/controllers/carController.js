@@ -174,21 +174,17 @@ export const getAllCarsForUser = async (req, res) => {
 
 export const deleteCar = async (req, res) => {
   try {
-    const car = await Car.findById(req.params.carId)
-    if (!car) {
-      return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' })
+    const result = await Car.deleteOne({ _id: req.params.carId });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: 'Fahrzeug nicht gefunden.' });
     }
-    await car.remove()
-    res.json({ message: 'Fahrzeug erfolgreich gelöscht.' })
+    res.json({ message: 'Fahrzeug erfolgreich gelöscht.' });
   } catch (error) {
-    console.error('Fehler beim Löschen des Fahrzeugs:', error)
-    res
-      .status(500)
-      .json({
-        message: 'Fehler beim Löschen des Fahrzeugs.',
-        error: error.message
-      })
+    console.error('Fehler beim Löschen des Fahrzeugs:', error);
+    res.status(500).json({
+      message: 'Fehler beim Löschen des Fahrzeugs.',
+      error: error.message,
+    });
   }
-}
-
+};
 // Path: src/models/Car.js
