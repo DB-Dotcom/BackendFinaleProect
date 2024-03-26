@@ -7,6 +7,7 @@ import { createCar,
         addService,
         getCarDetails,
         getAllCarsForUser,
+        deleteCar
 
         } from '../controllers/carController.js';
 
@@ -32,6 +33,8 @@ router.get('/:carId',authUser, getCarDetails);
 
 // Route zum Abrufen aller Fahrzeuge, die einem Benutzer gehören
 router.get('/user/:userId',authUser, getAllCarsForUser);
+
+router.delete('/:carId',authUser, deleteCar);
 
 export default router;
 

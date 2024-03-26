@@ -200,6 +200,14 @@ Die API bietet Endpunkte zur Verwaltung von Benutzer- und Fahrzeugdaten. Für ei
 - `GET /api/cars/user/:userId`
   - Erfordert Authentifizierung.
 
+#### 📝 Fahrzeug löschen 
+
+- `DELETE /api/cars/:carId`
+  - Erfordert Authentifizierung.
+  - Löscht das Fahrzeug mit der angegebenen `carId`.
+  - Löscht auch alle Einträge in den History-Arrays des Fahrzeugs.
+  
+
 ## Fehlerbehandlung ❌
 
 Die API sendet spezifische Fehlermeldungen und Statuscodes zurück, wenn Probleme auftreten. Zum Beispiel:
@@ -237,6 +245,7 @@ Die folgenden Endpunkte erfordern, dass der `Authorization`-Header mit einem gü
 - **Ölwechsel-Eintrag hinzufügen**: `POST /api/cars/:carId/oelwechsel`
 - **Service-Eintrag hinzufügen**: `POST /api/cars/:carId/service`
 - **Fahrzeugdetails abrufen**: `GET /api/cars/:carId`
+- **Fahrzeug löschen**: `DELETE /api/cars/:carId`
 - **Alle Fahrzeuge eines Benutzers abrufen**: `GET /api/cars/user/:userId`
 
 ### ❌ Fehlermeldungen bei Authentifizierung
